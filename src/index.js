@@ -8,12 +8,14 @@ const app = express();
 
 const authRouter = require("./routes/auth.route");
 const kelasRouter = require("./routes/kelas.route");
+const mataPelajaranRouter = require("./routes/matapelajaran.route");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/kelas", kelasRouter);
+app.use("/api/matapelajaran", mataPelajaranRouter);
 
 app.listen(process.env.SERVER_PORT || 4000, () => {
   console.log("Server Running");
