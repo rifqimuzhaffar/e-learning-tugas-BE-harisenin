@@ -7,11 +7,13 @@ const express = require("express");
 const app = express();
 
 const authRouter = require("./routes/auth.route");
+const kelasRouter = require("./routes/kelas.route");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
+app.use("/api/kelas", kelasRouter);
 
 app.listen(process.env.SERVER_PORT || 4000, () => {
   console.log("Server Running");
