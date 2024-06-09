@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "id_sub_bab",
         as: "sub_bab",
       });
+      material.hasMany(models.usermaterial, {
+        foreignKey: "id_material",
+        as: "user_materials",
+      });
     }
   }
   material.init(

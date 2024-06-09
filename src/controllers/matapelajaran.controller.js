@@ -1,20 +1,39 @@
-const { matapelajaran: MataPelajaranModel } = require("../models");
+const {
+  matapelajaran: MataPelajaranModel,
+  kelas: KelasModel,
+  modepembelajaran: ModePembelajaranModel,
+} = require("../models");
 
 const index = async (req, res, next) => {
   try {
-    const { id_mode } = req.params;
+    const { id_kelas, id_mode_pembelajaran } = req.query;
 
-    if (!id_mode) {
+    if (!id_kelas || !id_mode_pembelajaran) {
       return res.status(400).send({
         message: "error",
-        error: "id_mode is required",
+        error: "id_kelas and id_mode_pembelajaran are required",
       });
     }
 
     const mataPelajarans = await MataPelajaranModel.findAll({
-      where: {
-        id_mode,
-      },
+      include: [
+        {
+          model: ModePembelajaranModel,
+          as: "mode_pembelajaran",
+          where: {
+            id: id_mode_pembelajaran,
+          },
+          include: [
+            {
+              model: KelasModel,
+              as: "kelas",
+              where: {
+                id: id_kelas,
+              },
+            },
+          ],
+        },
+      ],
       attributes: ["id", "nama_pelajaran", "img_thumbnail"],
     });
 
