@@ -33,6 +33,13 @@ const validateRegister = async (req, res, next) => {
   ) {
     return res.status(400).send({
       message: "Password is too weak",
+      details: [
+        "At least 1 uppercase letter",
+        "At least 1 lowercase letter",
+        "At least 1 digit",
+        "At least 1 special character",
+        "Minimum length of 8 characters",
+      ],
       data: null,
     });
   }

@@ -4,6 +4,7 @@ require("dotenv").config({ path: path.join(__dirname, "../.env") });
 
 const express = require("express");
 
+const { cors } = require("./middlewares/app");
 const authRouter = require("./routes/auth.route");
 const kelasRouter = require("./routes/kelas.route");
 const mataPelajaranRouter = require("./routes/matapelajaran.route");
@@ -15,6 +16,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors);
 
 if (!process.env.JWT_SECRET) {
   console.error(
