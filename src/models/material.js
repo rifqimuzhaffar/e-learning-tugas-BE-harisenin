@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "id_material",
         as: "user_materials",
       });
+      material.belongsTo(models.tipematerial, {
+        foreignKey: "id_tipe_material",
+        as: "tipe_material",
+      });
     }
   }
   material.init(
