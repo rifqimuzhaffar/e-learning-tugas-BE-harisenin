@@ -1,9 +1,4 @@
-const {
-  bab: BabModel,
-  subbab: SubBabModel,
-  userMaterial: UserMaterialModel,
-  material: MaterialModel,
-} = require("../models");
+const { bab: BabModel, subbab: SubBabModel } = require("../models");
 
 const index = async (req, res, next) => {
   try {
@@ -34,7 +29,7 @@ const index = async (req, res, next) => {
       nama: bab.nama_bab,
       total_sub_bab_gratis: bab.sub_babs.filter((subBab) => subBab.is_gratis)
         .length,
-      progress: calculateProgress(bab) || 0,
+      babProgress: calculateProgress(bab) || 0,
     }));
 
     return res.send({
