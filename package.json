@@ -1,8 +1,7 @@
 {
-  "name": "tokobuku-tugas-be-harisenin",
+  "name": "elearning-tugas-be-harisenin",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js  --watch src/ --watch package.json --watch .env",
     "start": "node src/index.js"

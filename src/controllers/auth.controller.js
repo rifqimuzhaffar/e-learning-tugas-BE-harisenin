@@ -20,13 +20,13 @@ const register = async (req, res, next) => {
     .then((user) => {
       if (!user) {
         return res.status(500).send({
-          message: "Failed to register user",
+          message: "Failed to register",
           data: null,
         });
       }
 
       return res.status(201).send({
-        message: "User successfully registered",
+        message: "Successfully registered",
         data: null,
       });
     })
@@ -50,7 +50,7 @@ const login = async (req, res, next) => {
     .then(async (user) => {
       if (!user) {
         return res.status(401).send({
-          message: "Invalid email / password",
+          message: "Invalid email or password",
           data: null,
         });
       }
@@ -58,7 +58,7 @@ const login = async (req, res, next) => {
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
         return res.status(401).send({
-          message: "Invalid email / password",
+          message: "Invalid email or password",
           data: null,
         });
       }
@@ -73,7 +73,7 @@ const login = async (req, res, next) => {
       );
 
       return res.send({
-        message: "User successfully logged in",
+        message: "Successfully logged in",
         data: { token },
       });
     })
